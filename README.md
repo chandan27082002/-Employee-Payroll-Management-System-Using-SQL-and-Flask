@@ -18,7 +18,7 @@ This is a database-driven payroll system built using Python (Flask) and PostgreS
 - Clean, responsive UI using Bootstrap
 - SQL-based backend with normalized schema
 
-➤ Technologies Used
+# ➤ Technologies Used
 - Python (Flask)
 - PostgreSQL
 - HTML/CSS/Bootstrap
