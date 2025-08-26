@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payroll Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        canvas {
+            max-width: 500px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Payroll Dashboard</h2>
+
+    <!-- Filter form for month -->
+    <form method="post">
+        <label for="month">Select Month:</label>
+        <input type="text" id="month" name="month" placeholder="e.g. June 2025" required>
+        <button type="submit">Filter</button>
+    </form>
+
+    <h4>Total Net Pay for {{ month_filter }}: ₹{{ netpay }}</h4>
+
+    <!-- Donut Chart for Employees by Department -->
+    <canvas id="donutChart" height="120"></canvas>
+
+    <script>
+        const donutCtx = document.getElementById('donutChart').getContext('2d');
+        new Chart(donutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: {{ dept_data | map(attribute=0) | list | tojson }},
+                datasets: [{
+                    data: {{ dept_data | map(attribute=1) | list | tojson }},
+                    backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Employees by Department',
+                        font: { size: 14 }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

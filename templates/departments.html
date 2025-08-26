@@ -1,0 +1,89 @@
+{% block title %}Departments{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Departments</h2>
+    <a href="{{ url_for('add_department') }}" class="btn btn-success mb-3">Add Department</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dept in departments %}
+            <tr>
+                <td>{{ dept[0] }}</td>
+                <td>{{ dept[1] }}</td>
+                <td>
+                    <a href="{{ url_for('update_department', id=dept[0]) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ url_for('delete_department', id=dept[0]) }}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<style>
+    body {
+        background: linear-gradient(135deg, #a3d8d3, #047d7d);
+        min-height: 100vh;
+        color: #333;
+    }
+    h2 {
+        color: #0c0c0c;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .btn-success {
+        background: linear-gradient(135deg, #28a745, #218838);
+        border: none;
+        color: rgb(6, 6, 6);
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(14, 14, 14, 0.4);
+    }
+    .btn-warning {
+        background: linear-gradient(135deg, #c5cdcd, #097179);
+        border: none;
+        color: rgb(10, 10, 10);
+        margin-right: 5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-warning:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+    }
+    .btn-danger {
+        background: linear-gradient(135deg, #bfd5dd, #0d8587);
+        border: none;
+        color: rgb(6, 6, 6);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    }
+    table {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    th {
+        background: #02575f;
+        color: white;
+        text-align: center;
+    }
+    td {
+        vertical-align: middle;
+        background: rgba(255, 255, 255, 0.7);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payroll Management Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0e7f0, #036666);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #4a5d6b;
+            padding: 20px;
+            color: #fff;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #6c8ea6;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background: #8ba4b8;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
+
+        .container {
+            background: #f0f4f8;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message {
+            font-size: 1.2rem;
+            color: #34495e;
+            background: #d1d9e6;
+            padding: 12px 25px;
+            border-radius: 8px;
+            border-left: 5px solid #a3bffa;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-custom {
+            display: inline-block;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: left;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-custom::before {
+            content: "👤";
+            margin-right: 10px;
+        }
+
+        .btn-custom.manage-employees { 
+            background: linear-gradient(135deg, #d0dee1, #087282); 
+        }
+        .btn-custom.manage-departments { 
+            background: linear-gradient(135deg,#d0dee1, #087282); 
+        }
+        .btn-custom.record-attendance { 
+            background: linear-gradient(135deg,#d0dee1, #087282); 
+        }
+        .btn-custom.add-employee { 
+            background: linear-gradient(135deg,#d0dee1, #087282); 
+        }
+        .btn-custom.view-payroll { 
+            background: linear-gradient(135deg,#d0dee1, #087282); 
+        }
+        .btn-custom.view-attendance { 
+            background: linear-gradient(135deg, #d0dee1, #087282); 
+        }
+        .btn-custom.deductions { 
+            background: linear-gradient(135deg, #d0dee1, #087282); 
+        }
+        .btn-custom.generate-payroll { 
+            background: linear-gradient(135deg, #d0dee1, #087282); 
+        }
+        .btn-custom.salary-structure { 
+            background: linear-gradient(135deg,#d0dee1, #087282); 
+        }
+
+        .btn-custom.manage-employees::before { content: "👥"; }
+        .btn-custom.manage-departments::before { content: "🏢"; }
+        .btn-custom.record-attendance::before { content: "📅"; }
+        .btn-custom.add-employee::before { content: "➕"; }
+        .btn-custom.view-payroll::before { content: "📜"; }
+        .btn-custom.view-attendance::before { content: "👀"; }
+        .btn-custom.deductions::before { content: "💸"; }
+        .btn-custom.generate-payroll::before { content: "⚙️"; }
+        .btn-custom.salary-structure::before { content: "💰"; }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .welcome-message {
+                font-size: 1rem;
+            }
+            .btn-custom {
+                width: 150px;
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .btn-custom {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Payroll System</h2>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-info">📊 Dashboard</a>
+    </div>
+    <div class="content">
+        <div class="container mt-5">
+            <h1>Employee Payroll Management System</h1>
+            <div class="welcome-message">
+                Welcome to Employee Payroll Management System
+            </div>
+            <div class="row justify-content-center">
+                <a href="{{ url_for('employees') }}" class="btn-custom manage-employees btn-block">Manage Employees</a>
+                <a href="{{ url_for('departments') }}" class="btn-custom manage-departments btn-block">Manage Departments</a>
+                <a href="{{ url_for('attendance') }}" class="btn-custom record-attendance btn-block">Record Attendance</a>
+                <a href="{{ url_for('add_employee') }}" class="btn-custom add-employee btn-block">Add New Employee</a>
+                <a href="{{ url_for('payroll') }}" class="btn-custom view-payroll btn-block">View Payroll Records</a>
+                <a href="{{ url_for('view_attendance') }}" class="btn-custom view-attendance btn-block">View Today's Attendance</a>
+                <a href="{{ url_for('deductions') }}" class="btn-custom deductions btn-block">Deductions</a>
+                <a href="{{ url_for('generate_payroll') }}" class="btn-custom generate-payroll btn-block">Generate Payroll</a>
+                <a href="{{ url_for('salary_structure') }}" class="btn-custom salary-structure btn-block">Salary Structure</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
